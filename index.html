@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#7568ee">
+<meta name="theme-color" content="#6c5ce7">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>B2 WordQuest - Tự động tạo dữ liệu từ vựng</title>
+<title>B2 WordQuest | Hành trình chinh phục từ vựng</title>
 <style>
   :root{
     --bg:#eef7ff;--card:#fff;--ink:#1c2340;--muted:#68708b;--purple:#7568ee;
@@ -1279,6 +1279,18 @@
   .review-match-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;align-items:start}.review-match-col{display:grid;gap:7px}.review-match-label{font-size:9px;font-weight:1000;color:#81789a;text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}.review-match-btn{min-height:45px;border:2px solid #ddd7ed;border-radius:13px;background:#fff;color:#35405f;padding:7px 8px;font:inherit;font-size:10px;font-weight:900;line-height:1.25;cursor:pointer}.review-match-btn.selected{border-color:#7459d8;background:#f0ecff;color:#4d39a1}.review-match-btn.matched{border-color:#54c6a2;background:#e9fbf5;color:#1b7358;opacity:.65}.review-match-btn.error{border-color:#f08ca0;background:#fff0f3;animation:reviewShake .24s linear 1}@keyframes reviewShake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
   .review-game-result{width:100%;max-width:430px;text-align:center;padding:8px}.review-game-result .result-emoji{font-size:54px}.review-game-result h3{margin:6px 0 5px;font-size:20px;color:#34276f}.review-game-result p{margin:0 auto 13px;max-width:330px;font-size:10.5px;line-height:1.5;color:#706984}.review-game-result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.review-game-result-actions button{min-height:42px;border:1.5px solid #d4cdef;border-radius:13px;background:#fff;color:#4f428b;font:inherit;font-size:10px;font-weight:1000;cursor:pointer}.review-game-result-actions button.primary{border-color:#5e47c9;background:#6d55d9;color:#fff}
   .student-wrong-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:1px;padding:0 2px}.student-wrong-title strong{font-size:12px;color:#3e345e}.student-wrong-title small{font-size:8.5px;color:#888096}
+  .student-review-word-group{display:grid;gap:8px;padding:10px;border:2px solid #e4dcef;border-radius:18px;background:rgba(255,255,255,.78)}
+  .student-review-word-group+.student-review-word-group{margin-top:10px}
+  .student-review-word-group.unfinished{border-color:#c9dff3;background:linear-gradient(180deg,#f5fbff,#fff)}
+  .student-review-word-group.unfinished .student-wrong-title strong{color:#245d86}
+  .student-review-word-group.unfinished .student-wrong-word{border-color:#cfe2f0}
+  .student-review-word-group.unfinished .wrong-count{background:#e2f3ff;color:#23658f}
+  .student-review-word-group.unfinished .wrong-word-actions button{background:linear-gradient(180deg,#3889bd,#256b9c);box-shadow:0 3px 0 #174b70}
+  .review-group-count{display:inline-flex;align-items:center;justify-content:center;min-width:42px;padding:4px 7px;border-radius:999px;background:#f0ebf7;color:#625578;font-size:8.5px;font-weight:1000;white-space:nowrap}
+  .unfinished-priority{display:inline-flex;align-items:center;margin-top:4px;padding:3px 7px;border-radius:999px;background:#edf7ff;color:#3176a4;font-size:8px;font-weight:1000}
+  .review-toggle-row{display:flex;justify-content:center;margin-top:2px}
+  .review-toggle-btn{min-height:34px;border:1.5px solid #b7d8ef;border-radius:999px;background:linear-gradient(180deg,#fff,#eef8ff);color:#286b98;padding:0 13px;font:inherit;font-size:9.5px;font-weight:1000;cursor:pointer;box-shadow:0 3px 0 #c8dced}
+  .review-toggle-btn:active{transform:translateY(1px);box-shadow:0 2px 0 #c8dced}
 
   @media(max-width:620px){
     #studentScreen{padding:8px 7px 22px}.student-two-sheet{gap:9px}.student-sheet-profile{grid-template-columns:48px minmax(0,1fr) auto;padding:9px}.student-sheet-avatar{width:46px;height:46px}.student-sheet-profile-copy strong{font-size:15px}.student-sheet-profile-copy small{font-size:9px}.student-sheet-profile-reward{font-size:9px;padding:6px 7px}.student-main-tabs{top:59px;padding:5px}.student-main-tab{min-height:46px;font-size:13px}.student-main-tab .tab-ico{font-size:21px}.student-section-head{grid-template-columns:36px minmax(0,1fr) auto;padding:10px}.student-section-number{width:34px;height:34px;border-radius:11px;font-size:15px}.student-section-head h2{font-size:14px}.student-section-head p{font-size:8.5px}.student-section-body{padding:8px;gap:7px}.student-lesson-compact{grid-template-columns:42px minmax(0,1fr);gap:8px;padding:8px}.student-lesson-compact-icon{width:40px;height:40px;border-radius:12px;font-size:22px}.student-lesson-compact-title{font-size:13px}.student-lesson-compact-meta{font-size:8px}.student-lesson-compact-actions button{min-height:35px;font-size:10px}.student-review-intro{grid-template-columns:42px minmax(0,1fr) auto;padding:10px}.student-review-intro-icon{width:40px;height:40px;font-size:22px}.student-review-intro h2{font-size:14px}.student-review-intro p{font-size:8.5px}.student-wrong-word>summary{padding:9px}.wrong-word-main strong{font-size:13px}
@@ -2184,7 +2196,26 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
           <div class="student-review-sheet-scene">
           <section class="student-review-intro"><img class="student-review-character-art" src="data:image/webp;base64,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" alt="Minh họa cô bé đang chinh phục thử thách từ vựng"><div class="student-review-intro-icon">🎯</div><div><h2>Ôn tập từ hay sai</h2><p>Chỉ lấy các từ thuộc bài đang diễn ra và xếp theo số lần trả lời sai.</p></div><span class="student-review-total" id="studentWrongTotal">0 từ</span></section>
           <div class="review-fun-sticker-row" aria-hidden="true"><span class="review-fun-sticker">📚</span><span class="review-fun-sticker">🚀</span><span class="review-fun-sticker">🐰</span><span class="review-fun-sticker">🌟</span></div>
-          <section class="student-youtube-practice"><div><strong>🎧 Học & nghe thêm với Fluent Future Vietnam</strong><span>Mở các clip luyện nghe và học tiếng Anh trên YouTube.</span></div><a class="youtube-review-link" href="https://www.youtube.com/@FluentFutureVietnam/videos" target="_blank" rel="noopener noreferrer">▶ Xem clip học & nghe ↗</a></section>
+          <section class="student-youtube-practice" aria-label="Nhiệm vụ luyện nghe cùng Fluent Future Vietnam">
+            <div class="youtube-practice-art" aria-hidden="true">
+              <span class="youtube-play-disc">▶</span>
+              <span class="youtube-art-note note-one">♪</span>
+              <span class="youtube-art-note note-two">♫</span>
+              <span class="youtube-art-star">✦</span>
+            </div>
+            <div class="youtube-practice-copy">
+              <span class="youtube-practice-kicker">🎧 NHIỆM VỤ NGHE 5 PHÚT</span>
+              <strong>Nghe một clip – tiến bộ thêm một chút!</strong>
+              <span class="youtube-practice-desc">Chọn video em thích và luyện tai tiếng Anh cùng Fluent Future Vietnam.</span>
+              <div class="youtube-practice-benefits" aria-label="Lợi ích">
+                <span>✓ Nghe tự nhiên hơn</span><span>✓ Nhớ từ lâu hơn</span><span>✓ Chỉ 5 phút</span>
+              </div>
+            </div>
+            <a class="youtube-review-link" href="https://www.youtube.com/@FluentFutureVietnam/videos" target="_blank" rel="noopener noreferrer" aria-label="Xem clip luyện nghe trên kênh YouTube Fluent Future Vietnam">
+              <span class="youtube-cta-icon" aria-hidden="true">▶</span>
+              <span class="youtube-cta-copy"><strong>Xem clip ngay</strong><small>Mở kênh YouTube ↗</small></span>
+            </a>
+          </section>
           <section class="student-mini-game-zone" id="studentMiniGameZone">
             <div class="student-mini-game-head"><div><h3>🎮 Mini games luyện nhanh</h3><p id="studentReviewGameHint">Ưu tiên các từ hay sai trong bài đang diễn ra. Chơi game không làm thay đổi thưởng/phạt.</p></div><span class="student-mini-game-note">1–3 phút</span></div>
             <div class="student-mini-game-grid">
@@ -2199,8 +2230,23 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
             <div class="review-game-progress"><span id="reviewGameProgress"></span></div>
             <div class="review-game-body" id="reviewGameBody"></div>
           </section>
-          <div class="student-wrong-title"><strong>🧠 Từ cần ôn kỹ</strong><small>Chạm vào từ để xem nghĩa và ví dụ</small></div>
-          <div class="student-wrong-word-list" id="studentWrongWordList"></div>
+          <section class="student-review-word-group" aria-labelledby="studentWrongWordsTitle">
+            <div class="student-wrong-title">
+              <div class="review-title-copy"><span class="review-title-icon" aria-hidden="true">🧠</span><div><small>LUYỆN ĐÚNG ĐIỂM YẾU</small><strong id="studentWrongWordsTitle">Từ cần chinh phục lại</strong></div></div>
+              <span class="review-group-count" id="studentWrongGroupCount">0 từ</span>
+            </div>
+            <small class="review-group-hint">Sai một lần là thêm một cơ hội nhớ lâu hơn. Chạm vào từ để xem nghĩa và luyện lại nhé!</small>
+            <div class="student-wrong-word-list" id="studentWrongWordList"></div>
+          </section>
+          <section class="student-review-word-group unfinished" aria-labelledby="studentUnfinishedWordsTitle">
+            <div class="student-wrong-title">
+              <div class="review-title-copy"><span class="review-title-icon" aria-hidden="true">🚀</span><div><small>TIẾP TỤC HÀNH TRÌNH</small><strong id="studentUnfinishedWordsTitle">Từ đang chờ em hoàn thành</strong></div></div>
+              <span class="review-group-count" id="studentUnfinishedGroupCount">0 từ</span>
+            </div>
+            <small class="review-group-hint">Mỗi từ hoàn thành là một bước tiến mới. Ưu tiên từ trong bài đang diễn ra trước nhé!</small>
+            <div class="student-wrong-word-list" id="studentUnfinishedWordList"></div>
+            <div class="review-toggle-row hidden" id="studentUnfinishedToggleWrap"><button type="button" class="review-toggle-btn" id="studentUnfinishedToggleBtn" aria-expanded="false">Xem tất cả</button></div>
+          </section>
           </div>
         </div>
       </div>
@@ -3061,15 +3107,33 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
   }
   function studentWrongWordHtml(row){
     const w=row.word,ipa=String(w.phonetic||'').trim(),pos=String(w.partOfSpeech||'').trim();
-    return `<details class="student-wrong-word"><summary><div class="wrong-word-main"><strong>${esc(w.word)}</strong><small>${esc(row.lesson.title)}${ipa?' · '+esc(ipa):''}${pos?' · '+esc(pos):''}</small></div><span class="wrong-count">✖ ${row.count} lần</span></summary><div class="wrong-word-detail"><div class="wrong-word-meaning">${esc(w.meaning||'Chưa có nghĩa tiếng Việt')}</div><div class="wrong-word-example">${w.definition?'<div><strong>Nghĩa Anh:</strong> '+esc(w.definition)+'</div>':''}${w.example?'<div style="margin-top:4px"><strong>Ví dụ:</strong> '+esc(w.example)+'</div>':''}</div><div class="wrong-word-actions"><button type="button" data-review-wrong-lesson="${esc(row.lesson.id)}" data-review-wrong-word="${esc(w.id)}">🃏 Mở thẻ từ này</button></div></div></details>`;
+    return `<details class="student-wrong-word"><summary><span class="review-word-orb mistake" aria-hidden="true">!</span><div class="wrong-word-main"><strong>${esc(w.word)}</strong><small>${esc(row.lesson.title)}${ipa?' · '+esc(ipa):''}${pos?' · '+esc(pos):''}</small></div><span class="wrong-count">✖ ${row.count} lần</span></summary><div class="wrong-word-detail"><div class="wrong-word-meaning">${esc(w.meaning||'Chưa có nghĩa tiếng Việt')}</div><div class="wrong-word-example">${w.definition?'<div><strong>Nghĩa Anh:</strong> '+esc(w.definition)+'</div>':''}${w.example?'<div style="margin-top:4px"><strong>Ví dụ:</strong> '+esc(w.example)+'</div>':''}</div><div class="wrong-word-actions"><button type="button" data-review-wrong-lesson="${esc(row.lesson.id)}" data-review-wrong-word="${esc(w.id)}">🃏 Luyện lại từ này</button></div></div></details>`;
+  }
+
+  function unfinishedReviewWords(wrongRows=[]){
+    const excluded=new Set(wrongRows.map(r=>r.lesson.id+'::'+r.word.id));
+    const lessons=studentLessonOrder().filter(l=>isAvailable(l)&&masteredCount(l)<l.words.length).sort((a,b)=>{
+      const aActive=!isExpired(a),bActive=!isExpired(b);if(aActive!==bActive)return aActive?-1:1;
+      return aActive?(lessonEndDate(a).localeCompare(lessonEndDate(b))||lessonDate(a).localeCompare(lessonDate(b))):(lessonEndDate(b).localeCompare(lessonEndDate(a))||lessonDate(b).localeCompare(lessonDate(a)));
+    });
+    const rows=[];
+    lessons.forEach(l=>l.words.forEach((w,index)=>{const key=l.id+'::'+w.id;if(!wordComplete(l,w)&&!excluded.has(key))rows.push({lesson:l,word:w,index,count:mistakeCountFor(l.id,w.id),reviewType:'unfinished'});}));
+    return rows;
+  }
+  function studentUnfinishedWordHtml(row){
+    const l=row.lesson,w=row.word,ipa=String(w.phonetic||'').trim(),pos=String(w.partOfSpeech||'').trim(),active=!isExpired(l),targetReached=isComplete(l);
+    const priority=active?'⚡ Đang diễn ra':`📅 Đã giao ${formatDate(lessonDate(l))}`;
+    const badge=targetReached?'Học thêm':active?'Chưa đạt':'Còn thiếu';
+    return `<details class="student-wrong-word"><summary><span class="review-word-orb" aria-hidden="true">${esc(String(w.word||'?').trim().charAt(0).toUpperCase())}</span><div class="wrong-word-main"><strong>${esc(w.word)}</strong><small>${esc(l.title)}${ipa?' · '+esc(ipa):''}${pos?' · '+esc(pos):''}</small><span class="unfinished-priority">${esc(priority)}</span></div><span class="wrong-count">📖 ${badge}</span></summary><div class="wrong-word-detail"><div class="wrong-word-meaning">${esc(w.meaning||'Chưa có nghĩa tiếng Việt')}</div><div class="wrong-word-example">${w.definition?'<div><strong>Nghĩa Anh:</strong> '+esc(w.definition)+'</div>':''}${w.example?'<div style="margin-top:4px"><strong>Ví dụ:</strong> '+esc(w.example)+'</div>':''}</div><div class="wrong-word-actions"><button type="button" data-review-wrong-lesson="${esc(l.id)}" data-review-wrong-word="${esc(w.id)}">🚀 Hoàn thành từ này</button></div></div></details>`;
   }
 
 
-  let reviewGameState=null;
+  let reviewGameState=null,studentUnfinishedExpanded=false;
   function reviewGamePool(){
     const active=studentLessonOrder().filter(l=>isAvailable(l)&&!isExpired(l));
-    const prioritized=activeWrongWords(active),rows=[],seen=new Set();
+    const prioritized=activeWrongWords(active),unfinished=unfinishedReviewWords(prioritized),rows=[],seen=new Set();
     prioritized.forEach(r=>{const key=r.lesson.id+'::'+r.word.id;if(!seen.has(key)){seen.add(key);rows.push(r);}});
+    unfinished.forEach(r=>{const key=r.lesson.id+'::'+r.word.id;if(!seen.has(key)){seen.add(key);rows.push(r);}});
     active.forEach(l=>l.words.forEach((w,index)=>{const key=l.id+'::'+w.id;if(!seen.has(key)){seen.add(key);rows.push({lesson:l,word:w,index,count:mistakeCountFor(l.id,w.id)});}}));
     return rows.filter(r=>String(r.word&&r.word.word||'').trim()&&String(r.word&&r.word.meaning||'').trim());
   }
@@ -3192,12 +3256,14 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
     document.querySelectorAll('#studentScreen [data-quiz-lesson]').forEach(b=>b.onclick=()=>{if(b.disabled)return;currentLesson=db.lessons.find(l=>l.id===b.dataset.quizLesson);if(currentLesson){sfx('tap');startQuiz();}});
     const historyMore=$('studentHistoryMoreBtn');if(historyMore){historyMore.onclick=()=>{const extras=[...document.querySelectorAll('#studentScreen .student-history-extra')],opening=extras.some(r=>r.classList.contains('hidden'));extras.forEach(r=>r.classList.toggle('hidden',!opening));historyMore.textContent=opening?'Thu gọn⌃':'Xem thêm⌄';sfx('open');};}
     document.querySelectorAll('#studentScreen [data-review-wrong-lesson]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();const lesson=db.lessons.find(l=>l.id===b.dataset.reviewWrongLesson);if(!lesson)return;currentLesson=lesson;const idx=lesson.words.findIndex(w=>w.id===b.dataset.reviewWrongWord);flashIndex=idx>=0?idx:0;renderFlash();sfx('flip');show('reviewScreen');});
+    const unfinishedToggle=$('studentUnfinishedToggleBtn');if(unfinishedToggle)unfinishedToggle.onclick=()=>{studentUnfinishedExpanded=!studentUnfinishedExpanded;sfx('tap');renderStudent();};
     document.querySelectorAll('#studentScreen [data-mini-game]').forEach(b=>b.onclick=()=>{if(!b.disabled)startReviewMiniGame(b.dataset.miniGame);});
     const reviewGameClose=$('reviewGameClose');if(reviewGameClose)reviewGameClose.onclick=closeReviewGame;
     document.querySelectorAll('[data-student-sheet-tab]').forEach(b=>b.onclick=()=>{sfx('open');setStudentSheet(b.dataset.studentSheetTab);});
   }
   function renderStudent(){
     save();renderTopbar();const p=studentProgress(),ordered=studentLessonOrder(),activeLessons=ordered.filter(l=>isAvailable(l)&&!isExpired(l)),upcomingLessons=ordered.filter(l=>!isAvailable(l)),endedLessons=ordered.filter(isExpired),cashTotal=cashRewardTotal(),penaltyTotal=cashPenaltyTotal(),cashBalance=cashBalanceTotal();
+    const reviewIntro=$('studentReviewSheet').querySelector('.student-review-intro');if(reviewIntro){const h=reviewIntro.querySelector('h2'),copy=reviewIntro.querySelector('p');if(h)h.textContent='Ôn tập thông minh';if(copy)copy.textContent='Tách riêng từ hay sai và từ chưa học hết trong các bài đã mở; không lấy bài tương lai.';}
     const balanceBox=$('studentSimpleReward');balanceBox.classList.toggle('negative-balance',cashBalance<0);balanceBox.textContent=formatSignedVnd(cashBalance);
 
     const activeSorted=activeLessons.slice().sort((a,b)=>lessonEndDate(a).localeCompare(lessonEndDate(b))||lessonDate(a).localeCompare(lessonDate(b)));
@@ -3210,8 +3276,14 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
 
     const historyLessons=ordered.filter(l=>isAvailable(l));$('studentSimpleHistoryCount').textContent=historyLessons.length+' bài';$('studentSimpleHistoryList').innerHTML=historyLessons.length?historyLessons.map((l,i)=>studentHistoryRowHtml(l,i)).join(''):'<div class="student-empty-box">Chưa có lịch sử học tập.</div>';const historyMore=$('studentHistoryMoreBtn');if(historyMore){historyMore.classList.toggle('hidden',historyLessons.length<=4);historyMore.textContent='Xem thêm⌄';}
 
-    const wrong=activeWrongWords(activeSorted);$('studentWrongTotal').textContent=wrong.length+' từ';$('studentWrongWordList').innerHTML=wrong.length?wrong.slice(0,20).map(studentWrongWordHtml).join(''):'<div class="student-empty-box">🎉 Chưa có từ nào bị trả lời sai trong các bài đang diễn ra. Khi bạn chọn sai nghĩa hoặc gõ sai chính tả, từ đó sẽ tự xuất hiện tại đây.</div>';
-    const gamePool=reviewGamePool(),gameHint=$('studentReviewGameHint');if(gameHint)gameHint.textContent=!gamePool.length?'Chưa có từ trong bài đang diễn ra để chơi mini game.':wrong.length?`Ưu tiên ${wrong.length} từ hay sai; nếu thiếu câu, ứng dụng bổ sung từ đang học. Mini game không ảnh hưởng thưởng/phạt.`:'Chưa có từ sai; mini game sẽ dùng các từ trong bài đang diễn ra. Mini game không ảnh hưởng thưởng/phạt.';document.querySelectorAll('#studentScreen [data-mini-game]').forEach(b=>b.disabled=!gamePool.length);
+    const wrong=activeWrongWords(activeSorted),unfinished=unfinishedReviewWords(wrong),reviewTotal=wrong.length+unfinished.length;
+    $('studentWrongTotal').textContent=reviewTotal+' từ';$('studentWrongGroupCount').textContent=wrong.length+' từ';$('studentUnfinishedGroupCount').textContent=unfinished.length+' từ';
+    $('studentWrongWordList').innerHTML=wrong.length?wrong.slice(0,20).map(studentWrongWordHtml).join(''):'<div class="student-empty-box"><span class="empty-celebration" aria-hidden="true">🏆</span><div><strong>Tuyệt vời, chưa có từ nào bị sai!</strong><small>Em đang làm rất tốt. Hãy tiếp tục giữ phong độ trong bài tiếp theo nhé.</small></div><span class="empty-sparkles" aria-hidden="true">✨</span></div>';
+    const unfinishedPreviewLimit=3,unfinishedCanExpand=unfinished.length>unfinishedPreviewLimit;if(!unfinishedCanExpand)studentUnfinishedExpanded=false;
+    const visibleUnfinished=studentUnfinishedExpanded?unfinished.slice(0,40):unfinished.slice(0,unfinishedPreviewLimit);
+    $('studentUnfinishedWordList').innerHTML=unfinished.length?visibleUnfinished.map(studentUnfinishedWordHtml).join(''):'<div class="student-empty-box">✅ Không còn từ chưa học hết trong các bài đã mở. Từ sẽ tự rời nhóm này ngay khi đạt đủ chọn nghĩa và chính tả.</div>';
+    const unfinishedToggleWrap=$('studentUnfinishedToggleWrap'),unfinishedToggleBtn=$('studentUnfinishedToggleBtn');if(unfinishedToggleWrap&&unfinishedToggleBtn){unfinishedToggleWrap.classList.toggle('hidden',!unfinishedCanExpand);unfinishedToggleBtn.setAttribute('aria-expanded',studentUnfinishedExpanded?'true':'false');unfinishedToggleBtn.textContent=studentUnfinishedExpanded?'Thu gọn còn 3 từ':`Xem tất cả ${unfinished.length} từ`;unfinishedToggleBtn.title=studentUnfinishedExpanded?'Ẩn bớt danh sách từ chưa học hết':'Mở toàn bộ danh sách từ chưa học hết';}
+    const gamePool=reviewGamePool(),gameHint=$('studentReviewGameHint');if(gameHint)gameHint.textContent=!gamePool.length?'Chưa có từ trong các bài đã mở để chơi mini game.':wrong.length?`Ưu tiên ${wrong.length} từ hay sai, sau đó ${unfinished.length} từ chưa học hết. Mini game không ảnh hưởng thưởng/phạt.`:unfinished.length?`Luyện ${unfinished.length} từ chưa học hết trong các bài đã mở. Mini game không ảnh hưởng thưởng/phạt.`:'Mini game dùng các từ trong bài đang diễn ra và không ảnh hưởng thưởng/phạt.';document.querySelectorAll('#studentScreen [data-mini-game]').forEach(b=>b.disabled=!gamePool.length);
     if(reviewGameState){closeReviewGame();}
     bindStudentSimpleActions();
   }
@@ -5339,5 +5411,737 @@ html, body, button, input, textarea, select {
   }
 }
 </style>
+
+<!-- Premium playful refinement. Kept intentionally compatible with the existing app logic. -->
+<style id="b2-premium-playful-v2">
+  :root {
+    --bg: #f7f6ff;
+    --card: #ffffff;
+    --ink: #293052;
+    --muted: #707895;
+    --purple: #6c5ce7;
+    --purple2: #8b6ce8;
+    --pink: #ff6f91;
+    --yellow: #ffd166;
+    --green: #27ae83;
+    --turquoise: #27b8b0;
+    --orange: #ff9f5a;
+    --red: #ec5f73;
+    --line: #e6e4f1;
+    --shadow: 0 7px 0 rgba(55, 46, 112, .10), 0 18px 42px rgba(59, 48, 117, .10);
+  }
+
+  html { background: #f7f6ff; }
+  body {
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 6% 2%, rgba(117, 104, 238, .16), transparent 25rem),
+      radial-gradient(circle at 95% 14%, rgba(255, 111, 145, .12), transparent 24rem),
+      radial-gradient(circle at 86% 96%, rgba(39, 184, 176, .11), transparent 25rem),
+      linear-gradient(180deg, #fbfaff 0%, #f3f7ff 100%) !important;
+  }
+  .app { max-width: 1160px; padding-top: 22px; }
+  h1, h2, h3, .brand-title, .stat-value { letter-spacing: -.025em; }
+  p { line-height: 1.58; }
+
+  .playful-bg { opacity: .5; filter: saturate(.82); }
+  .playful-star { animation-duration: 6s !important; }
+
+  .topbar {
+    top: 12px;
+    margin-bottom: 24px;
+    padding: 10px 12px;
+    border: 1px solid rgba(224, 220, 242, .9);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .88) !important;
+    box-shadow: 0 10px 30px rgba(51, 43, 105, .10);
+    backdrop-filter: blur(18px);
+  }
+  .brand-icon {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #d9d2ff;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #fff4cf, #ffe4ef);
+    box-shadow: inset 0 1px 0 #fff, 0 4px 12px rgba(91, 73, 166, .12);
+    font-size: 27px;
+    transform: rotate(-4deg);
+  }
+  .brand-title { font-size: 20px; color: #352b72; }
+  .brand-sub { color: #7a7394; font-weight: 700; }
+
+  .pill {
+    border: 1px solid #dfdbea;
+    background: #faf9ff;
+    box-shadow: none;
+  }
+  .btn {
+    border-width: 2px;
+    border-color: #343a63;
+    border-radius: 13px;
+    box-shadow: 0 4px 0 rgba(41, 48, 82, .18);
+    transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(41, 48, 82, .16), 0 10px 24px rgba(55, 46, 112, .10); }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(41, 48, 82, .18); }
+  .btn.primary { background: linear-gradient(135deg, #7868ee, #654dd8); }
+  .btn.green { background: linear-gradient(135deg, #35c293, #20a67c); }
+  .btn.yellow { background: linear-gradient(135deg, #ffe181, #ffc956); }
+  .btn.pink { background: linear-gradient(135deg, #ff83a5, #f05f89); }
+  .btn:focus-visible, .input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid rgba(108, 92, 231, .24);
+    outline-offset: 2px;
+  }
+
+  .card {
+    border: 2px solid rgba(41, 48, 82, .88);
+    border-radius: 21px;
+    box-shadow: var(--shadow);
+  }
+  .input, textarea, select {
+    border-color: #c9c5dd;
+    color: #293052;
+    background: #fff;
+  }
+  .input:focus, textarea:focus, select:focus {
+    border-color: #7568ee;
+    box-shadow: 0 0 0 4px rgba(117, 104, 238, .13);
+  }
+
+  /* Login: bright, premium and friendly instead of dark corporate. */
+  #loginScreen { min-height: calc(100vh - 48px); }
+  .login-shell {
+    width: min(990px, 100%);
+    min-height: 600px;
+    border-color: #332a68;
+    border-radius: 28px;
+    box-shadow: 0 9px 0 rgba(58, 43, 116, .16), 0 30px 80px rgba(54, 42, 113, .20);
+  }
+  .login-hero {
+    min-height: 600px;
+    padding: 50px;
+    background:
+      radial-gradient(circle at 78% 20%, rgba(255, 224, 129, .40), transparent 9rem),
+      radial-gradient(circle at 12% 86%, rgba(92, 220, 213, .35), transparent 12rem),
+      linear-gradient(145deg, #6f5ee7 0%, #8e62df 50%, #e5659a 100%) !important;
+  }
+  .login-hero:before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    right: -85px;
+    bottom: -85px;
+    border-radius: 50%;
+    border: 38px solid rgba(255, 255, 255, .10);
+  }
+  .login-hero:after { opacity: .10; font-size: 34px; letter-spacing: 7px; }
+  .login-fox {
+    width: 90px;
+    height: 90px;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255,255,255,.55);
+    border-radius: 25px;
+    background: rgba(255,255,255,.20);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px rgba(64, 39, 111, .20);
+    font-size: 52px;
+    transform: rotate(-3deg);
+  }
+  .login-hero h1 { margin: 22px 0 12px; font-size: clamp(38px, 4.4vw, 51px); text-shadow: 0 3px 0 rgba(70, 40, 120, .14); }
+  .login-hero p { color: rgba(255,255,255,.92); font-size: 16px; }
+  .login-hero ul { font-weight: 650; color: rgba(255,255,255,.94); }
+  .login-hero li { margin-bottom: 7px; }
+  .login-form { padding: 48px; background: linear-gradient(180deg, #fff, #fdfcff); }
+  .login-form h2 { color: #352b72; font-size: 31px; }
+  .login-form .btn.primary { min-height: 50px; font-size: 15px; }
+  .demo-account {
+    border: 1px solid #e1ddee;
+    background: #faf9ff;
+    transition: .16s ease;
+  }
+  .demo-account:hover { border-color: #b9aeef; background: #f1eeff; transform: translateY(-1px); }
+
+  /* Teacher and shared dashboard surfaces. */
+  #teacherScreen .hero {
+    border-color: #332a68;
+    border-radius: 25px;
+    background:
+      radial-gradient(circle at 85% 12%, rgba(255,255,255,.18), transparent 11rem),
+      linear-gradient(125deg, #6b5be5 0%, #7b68e9 43%, #45abd2 100%) !important;
+    box-shadow: 0 7px 0 rgba(54, 42, 105, .18), 0 22px 45px rgba(70, 57, 145, .18);
+  }
+  #teacherScreen .hero h2 { font-size: clamp(29px, 4vw, 39px); }
+  #teacherScreen .hero p { max-width: 650px; font-weight: 650; }
+  .hero-bubble { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28); box-shadow: inset 0 1px 0 rgba(255,255,255,.28); }
+  .stats { gap: 14px; margin: 19px 0; }
+  .stat {
+    position: relative;
+    overflow: hidden;
+    border-width: 1px;
+    border-color: #e2dff0;
+    box-shadow: 0 7px 20px rgba(57, 47, 111, .08);
+  }
+  .stat:before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: #7568ee; }
+  .stat:nth-child(2):before { background: #ff7197; }
+  .stat:nth-child(3):before { background: #28b9b1; }
+  .stat:nth-child(4):before { background: #ffc94a; }
+  .stat-label { color: #77718e; letter-spacing: .055em; }
+  .stat-value { color: #302963; }
+  .section-head h2 { color: #302963; }
+
+  .lesson-card {
+    border-color: #ded9ed;
+    box-shadow: 0 6px 20px rgba(57, 47, 111, .08);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .lesson-card:hover { border-color: #a99dec; box-shadow: 0 10px 28px rgba(92, 72, 178, .13); }
+  .lesson-icon { border-color: #4a4270; box-shadow: inset 0 1px 0 #fff; }
+  .badge { border-color: #ded9ed; box-shadow: 0 4px 0 rgba(55,46,112,.09); }
+
+  .import-card, .teacher-lesson, .student-progress {
+    border-color: #ded9ed;
+  }
+  .import-card-icon { background: linear-gradient(145deg, #eeeaff, #ffe8f1); }
+  .step-kicker { color: #5c4bc4; }
+  .compact-details, .source-strip, .import-preview { border-color: #ded9ed; }
+  .source-strip { background: #f6f3ff; }
+  .source-link { color: #5141a9; border-color: #cfc7f6; background: #f1eeff; }
+  .teacher-lesson[open] > summary { background: linear-gradient(90deg, #fbfaff, #f7fbff); }
+
+  /* Learning flow: retain game energy, refine spacing and depth. */
+  #lessonScreen .lesson-summary,
+  #quizScreen .question,
+  #quizScreen .typing-panel,
+  #resultScreen .result { border-color: #d8d2ec; box-shadow: 0 8px 0 rgba(55,46,112,.09), 0 20px 45px rgba(57,47,111,.12); }
+  #lessonScreen .mode { border-color: #ded9ed; transition: .18s ease; }
+  #lessonScreen .mode:hover { border-color: #a99dec; transform: translateY(-3px) rotate(-.2deg); }
+  .progress { border-width: 1px; border-color: #c9c5dc; background: #ebeaf4; }
+  .progress > span { background: linear-gradient(90deg, #ffcf5a, #ff9565, #ff7197); }
+  .notice { border-style: solid; border-color: #cfc6fa; background: linear-gradient(90deg, #f5f2ff, #fff8fb); }
+  .face {
+    border-color: #36305f;
+    box-shadow: 0 8px 0 rgba(55,46,112,.14), 0 26px 55px rgba(57,47,111,.16);
+  }
+  .face.backface { background: linear-gradient(145deg, #fff7dc 0%, #fff0f5 56%, #f4efff 100%); }
+  .speak { border-color: #343a63; background: linear-gradient(145deg, #5fd1c8, #28b9b1); box-shadow: 0 3px 0 rgba(41,48,82,.18); }
+  .option { border-color: #343a63; }
+  .option.correct { background: linear-gradient(135deg, #36c394, #21a87e); }
+  .option.wrong { background: linear-gradient(135deg, #f06e7f, #db4f66); }
+  .toast { border-width: 2px; border-color: #343a63; box-shadow: 0 5px 0 rgba(41,48,82,.16), 0 14px 30px rgba(50,43,100,.16); }
+
+  @media (max-width: 820px) {
+    .app { padding: 14px 14px 54px; }
+    .topbar { top: 8px; }
+    .login-hero { min-height: auto; padding: 33px; }
+    .login-form { padding: 34px; }
+  }
+
+  @media (max-width: 620px) {
+    .app { padding: 8px 10px calc(38px + env(safe-area-inset-bottom)); }
+    .topbar { top: 5px; margin-bottom: 15px; border-radius: 15px; }
+    .brand-icon { width: 37px; height: 37px; border-radius: 11px; font-size: 23px; }
+    .card { border-radius: 18px; }
+    .login-shell { border-radius: 22px; }
+    .login-hero { padding: 26px 22px; }
+    .login-fox { width: 66px; height: 66px; border-radius: 18px; font-size: 38px; }
+    .login-hero h1 { font-size: 31px; }
+    .login-form { padding: 27px 20px; }
+    #teacherScreen .hero { padding: 20px 18px; border-radius: 20px; }
+    #teacherScreen .hero h2 { font-size: 25px; }
+    .stat { padding-left: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+</style>
+
+<style id="youtube-practice-mission-v1">
+  #studentScreen .student-youtube-practice {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 20px;
+    min-height: 152px;
+    padding: 20px 22px;
+    overflow: hidden;
+    border: 2px solid #4d36a3;
+    border-radius: 24px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 84% 8%, rgba(255, 223, 112, .43), transparent 13rem),
+      radial-gradient(circle at 8% 105%, rgba(66, 214, 208, .40), transparent 12rem),
+      linear-gradient(120deg, #5846cb 0%, #7657df 48%, #d94d91 100%);
+    box-shadow: 0 7px 0 #3f2e8a, 0 18px 36px rgba(75, 51, 155, .24);
+  }
+  #studentScreen .student-youtube-practice::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 230px;
+    height: 230px;
+    right: 18%;
+    top: -165px;
+    border: 30px solid rgba(255, 255, 255, .09);
+    border-radius: 50%;
+  }
+  #studentScreen .student-youtube-practice::after {
+    content: "✦  ·  ✦  ·  ✦";
+    position: absolute;
+    z-index: -1;
+    right: 25%;
+    bottom: 8px;
+    color: rgba(255, 235, 143, .45);
+    font-size: 15px;
+    letter-spacing: 8px;
+    transform: rotate(-5deg);
+  }
+  #studentScreen .youtube-practice-art {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, .64);
+    border-radius: 27px;
+    background: rgba(255, 255, 255, .18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.65), 0 12px 24px rgba(44, 27, 111, .22);
+    backdrop-filter: blur(8px);
+    transform: rotate(-4deg);
+  }
+  #studentScreen .youtube-play-disc {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    padding-left: 4px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(145deg, #ff5e69, #e71f4f);
+    box-shadow: 0 5px 0 #a51f43, 0 10px 22px rgba(95, 26, 69, .28);
+    font-size: 23px;
+  }
+  #studentScreen .youtube-art-note,
+  #studentScreen .youtube-art-star {
+    position: absolute;
+    color: #fff1a6;
+    font-weight: 1000;
+    filter: drop-shadow(0 2px 0 rgba(57, 31, 115, .25));
+  }
+  #studentScreen .youtube-art-note.note-one { left: 2px; top: -8px; font-size: 24px; transform: rotate(-12deg); }
+  #studentScreen .youtube-art-note.note-two { right: -8px; bottom: 1px; font-size: 25px; transform: rotate(10deg); }
+  #studentScreen .youtube-art-star { right: -4px; top: -8px; font-size: 21px; }
+
+  #studentScreen .youtube-practice-copy { position: relative; z-index: 1; min-width: 0; }
+  #studentScreen .youtube-practice-kicker {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 7px;
+    padding: 5px 9px;
+    border: 1px solid rgba(255,255,255,.38);
+    border-radius: 999px;
+    color: #fff3ad;
+    background: rgba(50, 28, 126, .23);
+    font-size: 10px;
+    font-weight: 1000;
+    letter-spacing: .08em;
+  }
+  #studentScreen .youtube-practice-copy > strong {
+    display: block;
+    margin: 0 0 3px;
+    color: #fff;
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 1.16;
+    letter-spacing: -.025em;
+    text-shadow: 0 2px 0 rgba(62, 33, 124, .20);
+  }
+  #studentScreen .youtube-practice-desc {
+    display: block;
+    color: rgba(255,255,255,.88);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  #studentScreen .youtube-practice-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 9px;
+  }
+  #studentScreen .youtube-practice-benefits span {
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255,255,255,.12);
+    font-size: 9px;
+    font-weight: 900;
+  }
+
+  #studentScreen .student-youtube-practice .youtube-review-link {
+    position: relative;
+    z-index: 1;
+    min-width: 206px;
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 11px;
+    padding: 10px 16px;
+    border: 2px solid #6f3218;
+    border-radius: 17px;
+    color: #54220e;
+    background: linear-gradient(145deg, #fff29a, #ffc94c);
+    box-shadow: 0 5px 0 #a64e20, 0 12px 24px rgba(62, 29, 95, .24);
+    text-decoration: none;
+    transform: translateY(-2px) rotate(-.5deg);
+    transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+  }
+  #studentScreen .student-youtube-practice .youtube-review-link:hover {
+    filter: brightness(1.04) saturate(1.06);
+    transform: translateY(-5px) rotate(.4deg) scale(1.015);
+    box-shadow: 0 7px 0 #a64e20, 0 17px 30px rgba(62, 29, 95, .28);
+  }
+  #studentScreen .student-youtube-practice .youtube-review-link:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #a64e20;
+  }
+  #studentScreen .youtube-cta-icon {
+    width: 37px;
+    height: 37px;
+    flex: 0 0 37px;
+    display: grid;
+    place-items: center;
+    padding-left: 2px;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(145deg, #ff4d5f, #d91945);
+    box-shadow: 0 3px 0 #a31b39;
+    font-size: 14px;
+  }
+  #studentScreen .youtube-cta-copy { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+  #studentScreen .youtube-cta-copy strong { color: #52210e; font-size: 14px; }
+  #studentScreen .youtube-cta-copy small { margin-top: 4px; color: #7d3a1d; font-size: 9px; font-weight: 850; }
+
+  @media (max-width: 760px) {
+    #studentScreen .student-youtube-practice {
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 13px;
+      padding: 16px;
+      border-radius: 20px;
+    }
+    #studentScreen .youtube-practice-art { width: 70px; height: 70px; border-radius: 20px; }
+    #studentScreen .youtube-play-disc { width: 45px; height: 45px; border-width: 3px; font-size: 17px; }
+    #studentScreen .youtube-art-note.note-one { font-size: 18px; }
+    #studentScreen .youtube-art-note.note-two { font-size: 19px; }
+    #studentScreen .student-youtube-practice .youtube-review-link {
+      grid-column: 1 / -1;
+      width: 100%;
+      min-height: 56px;
+      justify-content: center;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 430px) {
+    #studentScreen .student-youtube-practice { grid-template-columns: 1fr; text-align: center; }
+    #studentScreen .youtube-practice-art { margin: 0 auto; }
+    #studentScreen .youtube-practice-kicker { margin-left: auto; margin-right: auto; }
+    #studentScreen .youtube-practice-benefits { justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #studentScreen .youtube-play-disc { animation: youtubePulse 2.2s ease-in-out infinite; }
+    #studentScreen .youtube-art-note.note-one { animation: youtubeFloat 2.8s ease-in-out infinite; }
+    #studentScreen .youtube-art-note.note-two { animation: youtubeFloat 2.8s ease-in-out .7s infinite; }
+  }
+  @keyframes youtubePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.075); }
+  }
+  @keyframes youtubeFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -5px; }
+  }
+</style>
+
+<style id="review-word-missions-v1">
+  #studentScreen .student-review-word-group {
+    position: relative;
+    isolation: isolate;
+    gap: 12px;
+    padding: 18px;
+    overflow: hidden;
+    border: 2px solid #d9c9ef;
+    border-radius: 25px;
+    background:
+      radial-gradient(circle at 96% 2%, rgba(255, 151, 190, .22), transparent 12rem),
+      linear-gradient(145deg, #fff9fd, #faf7ff 52%, #f4f1ff);
+    box-shadow: 0 6px 0 #e3d9f0, 0 16px 34px rgba(90, 66, 145, .10);
+  }
+  #studentScreen .student-review-word-group::after {
+    content: "✦";
+    position: absolute;
+    z-index: -1;
+    right: 24px;
+    top: 50px;
+    color: rgba(218, 85, 143, .18);
+    font-size: 78px;
+    transform: rotate(12deg);
+  }
+  #studentScreen .student-review-word-group + .student-review-word-group { margin-top: 16px; }
+  #studentScreen .student-review-word-group.unfinished {
+    border-color: #a8d9ef;
+    background:
+      radial-gradient(circle at 96% 0%, rgba(62, 204, 198, .22), transparent 13rem),
+      radial-gradient(circle at 0 100%, rgba(255, 215, 101, .16), transparent 12rem),
+      linear-gradient(145deg, #f5fcff, #f1faff 52%, #eef7ff);
+    box-shadow: 0 6px 0 #cce5f1, 0 16px 34px rgba(49, 130, 170, .10);
+  }
+  #studentScreen .student-review-word-group.unfinished::after {
+    content: "★";
+    color: rgba(30, 154, 188, .15);
+  }
+
+  #studentScreen .student-wrong-title {
+    position: relative;
+    z-index: 1;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+  }
+  #studentScreen .review-title-copy { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  #studentScreen .review-title-icon {
+    width: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #7257ba;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #ffe2ef, #f2ddff);
+    box-shadow: 0 4px 0 #d8c5e8;
+    font-size: 26px;
+    transform: rotate(-3deg);
+  }
+  #studentScreen .unfinished .review-title-icon {
+    border-color: #278cad;
+    background: linear-gradient(145deg, #d9f7ff, #d8f1ff);
+    box-shadow: 0 4px 0 #b9dce9;
+    transform: rotate(3deg);
+  }
+  #studentScreen .review-title-copy > div { min-width: 0; }
+  #studentScreen .review-title-copy small {
+    display: block;
+    margin-bottom: 2px;
+    color: #a23a70;
+    font-size: 9px;
+    font-weight: 1000;
+    letter-spacing: .09em;
+  }
+  #studentScreen .unfinished .review-title-copy small { color: #24799a; }
+  #studentScreen .review-title-copy strong,
+  #studentScreen .unfinished .review-title-copy strong {
+    display: block;
+    color: #3e315f;
+    font-size: clamp(17px, 2.5vw, 22px);
+    line-height: 1.15;
+    letter-spacing: -.025em;
+  }
+  #studentScreen .unfinished .review-title-copy strong { color: #174f70; }
+  #studentScreen .review-group-count {
+    min-width: 62px;
+    padding: 8px 12px;
+    border: 1px solid #d9c5e8;
+    color: #744375;
+    background: #fff;
+    box-shadow: 0 3px 0 #e4d8ec;
+    font-size: 11px;
+  }
+  #studentScreen .unfinished .review-group-count {
+    border-color: #b9dceb;
+    color: #176684;
+    box-shadow: 0 3px 0 #d0e5ee;
+  }
+  #studentScreen .review-group-hint {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin: 0 2px;
+    color: #756982;
+    font-size: 11px;
+    font-weight: 650;
+    line-height: 1.5;
+  }
+  #studentScreen .unfinished .review-group-hint { color: #537386; }
+
+  #studentScreen .student-wrong-word-list { position: relative; z-index: 1; gap: 11px; }
+  #studentScreen .student-wrong-word {
+    border: 2px solid #d9c8ea;
+    border-radius: 19px;
+    background: rgba(255,255,255,.94);
+    box-shadow: 0 4px 0 #e2d8eb, 0 8px 18px rgba(81, 59, 125, .06);
+    transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  }
+  #studentScreen .student-wrong-word:hover {
+    border-color: #aa8bd0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #ddcfeb, 0 14px 25px rgba(81, 59, 125, .10);
+  }
+  #studentScreen .unfinished .student-wrong-word {
+    border-color: #b7dbea;
+    box-shadow: 0 4px 0 #cfe5ee, 0 8px 18px rgba(32, 113, 148, .06);
+  }
+  #studentScreen .unfinished .student-wrong-word:hover { border-color: #66b7d3; box-shadow: 0 6px 0 #c7e0ea, 0 14px 25px rgba(32,113,148,.10); }
+  #studentScreen .student-wrong-word > summary {
+    grid-template-columns: 50px minmax(0, 1fr) auto;
+    gap: 12px;
+    min-height: 88px;
+    padding: 12px 14px;
+  }
+  #studentScreen .student-wrong-word > summary::after {
+    content: "⌄";
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    color: #9d8bb3;
+    font-size: 15px;
+    font-weight: 1000;
+    transition: transform .18s ease;
+  }
+  #studentScreen .student-wrong-word > summary { position: relative; }
+  #studentScreen .student-wrong-word[open] > summary::after { transform: rotate(180deg); }
+  #studentScreen .review-word-orb {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #2d7e9e;
+    border-radius: 15px;
+    color: #fff;
+    background: linear-gradient(145deg, #55c8d1, #2799bf);
+    box-shadow: 0 4px 0 #20708f;
+    font-size: 21px;
+    font-weight: 1000;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+  }
+  #studentScreen .student-wrong-word:nth-child(3n+2) .review-word-orb { background: linear-gradient(145deg, #8975ee, #6552cb); border-color: #49399d; box-shadow: 0 4px 0 #3d3087; transform: rotate(2deg); }
+  #studentScreen .student-wrong-word:nth-child(3n+3) .review-word-orb { background: linear-gradient(145deg, #ff9a75, #ef6f86); border-color: #b94463; box-shadow: 0 4px 0 #96354f; }
+  #studentScreen .review-word-orb.mistake { background: linear-gradient(145deg, #ff82a5, #e84d79); border-color: #a82c58; box-shadow: 0 4px 0 #8f264b; }
+  #studentScreen .wrong-word-main strong {
+    color: #293052;
+    font-size: clamp(17px, 2.3vw, 21px);
+    line-height: 1.15;
+  }
+  #studentScreen .wrong-word-main small { margin-top: 5px; color: #7c8296; font-size: 10px; line-height: 1.35; }
+  #studentScreen .unfinished-priority {
+    display: inline-flex;
+    margin-top: 7px;
+    padding: 4px 8px;
+    border: 1px solid #bde5f7;
+    border-radius: 999px;
+    color: #176c9b;
+    background: #e9f8ff;
+    font-size: 9px;
+    font-weight: 950;
+  }
+  #studentScreen .wrong-count {
+    padding: 7px 10px;
+    border: 1px solid #ffc7d6;
+    color: #b92e5d;
+    background: linear-gradient(145deg, #fff0f5, #ffdce8);
+    font-size: 10px;
+  }
+  #studentScreen .unfinished .wrong-count {
+    border-color: #b7e3ef;
+    color: #176988;
+    background: linear-gradient(145deg, #eafaff, #dff4ff);
+  }
+  #studentScreen .wrong-word-detail {
+    padding: 12px 16px 15px 76px;
+    border-top: 1px dashed #d9cde4;
+    background: linear-gradient(180deg, rgba(250,247,255,.62), #fff);
+  }
+  #studentScreen .unfinished .wrong-word-detail { border-top-color: #c9e3ed; background: linear-gradient(180deg, #f4fbff, #fff); }
+  #studentScreen .wrong-word-meaning { color: #3e315f; font-size: 15px; }
+  #studentScreen .wrong-word-actions button {
+    min-height: 40px;
+    padding: 0 15px;
+    border: 2px solid #43328f;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #806be7, #624cc7);
+    box-shadow: 0 3px 0 #3c2d83;
+    font-size: 11px;
+  }
+  #studentScreen .unfinished .wrong-word-actions button {
+    border-color: #176989;
+    background: linear-gradient(145deg, #3cb7c6, #278bb2);
+    box-shadow: 0 3px 0 #17617e;
+  }
+  #studentScreen .student-empty-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    min-height: 96px;
+    padding: 14px 17px;
+    border: 2px dashed #bca9df;
+    border-radius: 19px;
+    color: #655b79;
+    background: rgba(255,255,255,.72);
+    text-align: left;
+  }
+  #studentScreen .empty-celebration {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fff1ad, #ffd466);
+    box-shadow: 0 4px 0 #e5b747;
+    font-size: 32px;
+    transform: rotate(-4deg);
+  }
+  #studentScreen .student-empty-box strong { display: block; margin-bottom: 4px; color: #4b3974; font-size: 15px; }
+  #studentScreen .student-empty-box small { display: block; color: #7b718f; font-size: 10px; line-height: 1.45; }
+  #studentScreen .empty-sparkles { color: #f0b32f; font-size: 26px; }
+  #studentScreen .review-toggle-btn {
+    min-height: 42px;
+    padding: 0 18px;
+    border: 2px solid #2381a7;
+    color: #145d7b;
+    background: linear-gradient(180deg, #fff, #dff5ff);
+    box-shadow: 0 4px 0 #add9ea;
+    font-size: 11px;
+  }
+
+  @media (max-width: 560px) {
+    #studentScreen .student-review-word-group { padding: 13px; border-radius: 21px; }
+    #studentScreen .review-title-icon { width: 43px; height: 43px; flex-basis: 43px; border-radius: 14px; font-size: 22px; }
+    #studentScreen .review-title-copy { gap: 9px; }
+    #studentScreen .review-title-copy strong,
+    #studentScreen .unfinished .review-title-copy strong { font-size: 16px; }
+    #studentScreen .review-title-copy small { font-size: 7.5px; }
+    #studentScreen .review-group-count { min-width: 48px; padding: 6px 8px; font-size: 9px; }
+    #studentScreen .student-wrong-word > summary { grid-template-columns: 43px minmax(0,1fr); min-height: 84px; gap: 9px; padding: 11px; }
+    #studentScreen .review-word-orb { width: 41px; height: 41px; border-radius: 13px; font-size: 18px; }
+    #studentScreen .wrong-count { grid-column: 2; justify-self: start; margin-top: -3px; padding: 5px 8px; }
+    #studentScreen .wrong-word-main strong { font-size: 16px; }
+    #studentScreen .wrong-word-detail { padding: 11px 12px 13px; }
+    #studentScreen .student-empty-box { grid-template-columns: 50px minmax(0,1fr); gap: 11px; }
+    #studentScreen .empty-celebration { width: 48px; height: 48px; border-radius: 15px; font-size: 27px; }
+    #studentScreen .empty-sparkles { display: none; }
+  }
+</style>
 </body>
 </html>
+
