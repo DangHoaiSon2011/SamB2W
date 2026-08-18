@@ -2557,7 +2557,7 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
     if(!lesson)return;
     if(isFailed(lesson)){toast('⛔ Bài đã hết hạn và không hoàn thành nên không được thưởng. Tiền phạt: '+formatVnd(penaltyAmountFor(lesson))+'.');return;}
     const rule=lessonRewardRule(lesson);
-    if(!rule){toast('ℹ️ Bài này chưa thuộc rule thưởng tự động. Hiện rule thưởng áp dụng cho bài 15 hoặc 25 từ.');return;}
+    if(!rule){toast('ℹ️ Bài này chưa thuộc rule thưởng tự động. Hiện rule thưởng áp dụng cho bài từ 15 đến 20 từ hoặc từ 25 đến 30 từ.');return;}
     if(!isComplete(lesson)&&!existing){toast('🔒 Chỉ có thể xác nhận thưởng sau khi Lâm Hà đạt mức hoàn thành của bài.');return;}
     const amount=Number(calculatedCashReward(lesson)||0);
     if(amount<=0){toast('💵 Chưa đạt mức tối thiểu để tính thưởng.');return;}
@@ -2571,8 +2571,8 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
   function masteredCount(lesson){return lesson.words.filter(w=>wordComplete(lesson,w)).length;}
   function lessonRewardRule(lesson){
     const total=lesson&&Array.isArray(lesson.words)?lesson.words.length:0;
-    if(total===15)return {target:10,base:15000,basePerWord:1500,extraPerWord:2000};
-    if(total===25)return {target:20,base:30000,basePerWord:1500,extraPerWord:2000};
+    if(total>=15&&total<=20)return {target:10,base:15000,basePerWord:1500,extraPerWord:2000};
+    if(total>=25&&total<=30)return {target:20,base:30000,basePerWord:1500,extraPerWord:2000};
     return null;
   }
   function completionTarget(lesson){const rule=lessonRewardRule(lesson);return rule?rule.target:((lesson&&lesson.words&&lesson.words.length)||0);}
@@ -2742,7 +2742,7 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
       rewardPanel=`<div class="cash-reward-editor ${reward?'approved':eligible?'':'locked'}"><div class="cash-reward-copy"><div class="cash-reward-title">💵 Thưởng tự động theo rule</div><div class="cash-reward-status">${rewardStatus}</div>${reward?'<span class="cash-approved-pill">✅ Học sinh đã được thông báo</span>':''}</div><div class="cash-reward-controls"><div class="cash-auto-amount"><span>Mức hiện tại</span><strong>${autoAmount>0?formatVnd(autoAmount):'Chưa đủ điều kiện'}</strong></div><button class="btn small green cash-approve-btn" data-approve-cash="${id}" ${eligible?'':'disabled'}>${reward?'Cập nhật thưởng':'Xác nhận thưởng'}</button></div></div>`;
     }else{
       const oldReward=reward?` Khoản thưởng cũ đã duyệt: ${formatVnd(reward.amount)}.`:'';
-      rewardPanel=`<div class="cash-reward-editor ${reward?'approved':'locked'}"><div class="cash-reward-copy"><div class="cash-reward-title">💵 Thưởng tự động</div><div class="cash-reward-status">Bài ${l.words.length} từ chưa thuộc rule thưởng hiện tại (rule đang áp dụng cho bài 15 hoặc 25 từ). Không còn ô nhập tiền thủ công.${oldReward}</div>${reward?'<span class="cash-approved-pill">ℹ️ Giữ nguyên khoản thưởng cũ</span>':''}</div><div class="cash-auto-note">Chưa áp dụng rule</div></div>`;
+      rewardPanel=`<div class="cash-reward-editor ${reward?'approved':'locked'}"><div class="cash-reward-copy"><div class="cash-reward-title">💵 Thưởng tự động</div><div class="cash-reward-status">Bài ${l.words.length} từ chưa thuộc rule thưởng hiện tại (rule đang áp dụng cho bài từ 15–20 từ hoặc 25–30 từ). Không còn ô nhập tiền thủ công.${oldReward}</div>${reward?'<span class="cash-approved-pill">ℹ️ Giữ nguyên khoản thưởng cũ</span>':''}</div><div class="cash-auto-note">Chưa áp dụng rule</div></div>`;
     }
     return `<details class="progress-lesson-card" data-tone="${lessonTone(i)}" data-progress-lesson="${id}" ${expandedTeacherProgressLessons.has(l.id)?'open':''}><summary aria-label="Xem tiến độ bài ${esc(l.title)}"><div class="progress-card-icon">${esc(l.icon||iconFor(i))}</div><div class="progress-card-main"><div class="progress-card-top"><h4 class="progress-card-title">${esc(l.title)}</h4><span class="progress-card-count">${l.words.length} từ</span></div><div class="progress-card-date ${dateClass}">📅 ${esc(formatDate(lessonDate(l)))} → ${esc(formatDate(lessonEndDate(l)))}${failed?' · Đã hết hạn':upcoming?' · Chưa bắt đầu':''}</div><div class="progress-card-meter"><div class="progress"><span style="width:${pct}%"></span></div><span class="progress-card-status ${statusClass}">${status}</span></div></div><span class="progress-card-chevron" aria-hidden="true">⌄</span></summary><div class="progress-lesson-detail"><div class="progress-detail-stats"><div class="progress-detail-stat"><span>Đã xem</span><strong>${rc}/${l.words.length} thẻ</strong></div><div class="progress-detail-stat"><span>Kiểm tra đạt</span><strong>${mc}/${l.words.length} từ</strong></div><div class="progress-detail-stat"><span>Mục tiêu hoàn thành</span><strong>${target}/${l.words.length} từ</strong></div></div>${rewardPanel}<div class="progress-card-hint">Chạm vào tiêu đề để thu gọn</div></div></details>`;
   }
@@ -6629,154 +6629,6 @@ html, body, button, input, textarea, select {
       margin: 0 auto !important;
     }
     #studentScreen .student-hero-badges { width: 100% !important; }
-  }
-}
-</style>
-
-<style id="three-size-typography-system-v1-disabled">
-@media (max-width:0px) {
-  :root {
-    --font-small: 12px;
-    --font-body: 16px;
-    --font-display: 24px;
-  }
-
-  html, body, button, input, textarea, select { font-size: var(--font-body) !important; }
-
-  /* Base text: one consistent reading size everywhere. Duplicate IDs deliberately
-     outrank legacy screen-specific rules without changing application logic. */
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ),
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ) * {
-    font-size: var(--font-body) !important;
-  }
-  #toast#toast { font-size: var(--font-body) !important; }
-  body .champion-overlay.champion-overlay * { font-size: var(--font-body) !important; }
-
-  /* Small supporting copy: metadata, captions, hints and status labels. */
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ) :is(
-    small, label, .tiny, .muted, .brand-sub, .tag, .pill, .stat-label,
-    .lesson-meta, .student-lesson-compact-meta, .teacher-lesson-date,
-    .file-name, .step-kicker, .quiz-step, .tap, .source-link,
-    .firebase-status, .review-group-count, .wrong-count,
-    .unfinished-priority, .student-section-count, .student-summary-label,
-    .student-summary-sub, .student-feature-deadline, .student-hero-kicker,
-    .student-champion-kicker, .student-sheet-profile-copy small,
-    .student-sheet-profile-copy small b, .student-sheet-profile-reward,
-    .student-hero-progress-text, .review-group-hint, .compact-hint,
-    .preview-detail, .preview-source-row, .password-hint, .password-local-note
-  ) {
-    font-size: var(--font-small) !important;
-  }
-
-  /* Display text and visual symbols share the third and largest size. */
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ) :is(
-    h1, h2, h3, .display, .brand-title, .stat-value, .word-en, .word-vi,
-    .typing-meaning, .typing-title, .student-summary-value,
-    .student-feature-title, .student-lesson-compact-title,
-    .student-sheet-profile-copy .champion-line,
-    .student-sheet-profile-copy .vocab-line, .review-title-copy strong,
-    .wrong-word-main strong, .lesson-card h3, .teacher-lesson-title-line h3,
-    [class*="-icon"], [class*="-emoji"], .tab-ico, .badge-icon,
-    .login-fox, .brand-icon, .result-icon, .student-history-book,
-    .game-illustration, .game-art, .empty-celebration, .review-word-orb,
-    .student-section-number, .student-review-intro-icon
-  ) {
-    font-size: var(--font-display) !important;
-  }
-
-  body .champion-overlay.champion-overlay :is(h1,h2,h3,.champion-title,.champion-trophy,.champion-crown) {
-    font-size: var(--font-display) !important;
-  }
-  body .champion-overlay.champion-overlay :is(small,.champion-note) {
-    font-size: var(--font-small) !important;
-  }
-
-  /* Pseudo-elements inherit one of the same three sizes instead of introducing a fourth. */
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  )::before,
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  )::after,
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ) *::before,
-  body :is(
-    #topbar#topbar,
-    #loginScreen#loginScreen,
-    #teacherScreen#teacherScreen,
-    #studentScreen#studentScreen,
-    #lessonScreen#lessonScreen,
-    #reviewScreen#reviewScreen,
-    #quizScreen#quizScreen,
-    #resultScreen#resultScreen,
-    #passwordModal#passwordModal
-  ) *::after {
-    font-size: inherit !important;
   }
 }
 </style>
