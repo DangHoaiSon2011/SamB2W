@@ -885,6 +885,13 @@
   .english-test-maker .workflow-part-label{color:#16827e}.english-test-maker .workflow-part-label b{background:#25a9a1;box-shadow:0 2px 0 #176b72}
   .english-test-maker .old-test-count-wrap::before{content:"🇬🇧"}.english-test-maker .old-test-count-hint{background:linear-gradient(145deg,#e8fbff,#dbeeff);color:#17627a;box-shadow:0 2px 0 #b9dde7}
   .old-test-maker.english-test-maker .create-review-test-btn{background:linear-gradient(90deg,#179f98,#3a9fd3 48%,#6e5fe3 78%,#efb548)!important;box-shadow:0 5px 0 #236c89,0 9px 18px rgba(48,126,160,.22)!important}
+  .old-test-maker.catchup-maker{border-color:#9fd9c4;background:radial-gradient(circle at 92% 5%,rgba(255,210,85,.34) 0 9%,transparent 20%),radial-gradient(circle at 4% 96%,rgba(44,194,157,.2) 0 9%,transparent 21%),linear-gradient(145deg,#effff9 0%,#fff 48%,#fff9e9 100%);box-shadow:0 7px 0 #cceade,0 16px 32px rgba(31,126,99,.1)}
+  .old-test-maker.catchup-maker::before{background:linear-gradient(90deg,#20b78d,#55c5c4 48%,#f0bd43 78%,#f2856e)}
+  .catchup-maker .old-test-maker-icon{background:linear-gradient(145deg,#28c997,#47bfc4 58%,#f2bd43);box-shadow:0 5px 0 #247e72,0 9px 20px rgba(39,144,119,.2);transform:rotate(-4deg)}
+  .catchup-maker .workflow-part-label{color:#128064}.catchup-maker .workflow-part-label b{background:#20a77f;box-shadow:0 2px 0 #176b58}.catchup-maker .old-test-count-wrap::before{content:"🔁"}.catchup-maker .old-test-count-hint{background:linear-gradient(145deg,#e6fff5,#d7f6eb);color:#176b57;box-shadow:0 2px 0 #b8dfd0}
+  .catchup-maker .catchup-schedule{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.catchup-maker .catchup-date-card{padding:11px;border:1.5px solid #cfe6dd;border-radius:15px;background:rgba(255,255,255,.9)}.catchup-maker .catchup-date-card label{display:flex;align-items:center;gap:6px;margin-bottom:5px;color:#3f6158;font-size:9px}.catchup-maker .catchup-date-card .input{min-height:42px;border-color:#bcdacf;background:#fff;font-size:11px}
+  .catchup-maker .catchup-priority-note{display:flex;align-items:flex-start;gap:8px;margin:11px 0;padding:9px 10px;border:1px dashed #9fd5c3;border-radius:13px;background:#edfff8;color:#35685a;font-size:9px;line-height:1.4;font-weight:850}.catchup-maker .catchup-priority-note span{font-size:18px}.catchup-maker .create-review-test-btn{background:linear-gradient(90deg,#199f78,#35bca7 48%,#69b985 76%,#e2a936)!important;box-shadow:0 5px 0 #237760,0 9px 18px rgba(39,129,103,.22)!important}
+  @media(max-width:600px){.catchup-maker .catchup-schedule{grid-template-columns:1fr}}
   .quiz-timer{display:none;padding:7px 10px;border:2px solid #d4cdf9;border-radius:999px;background:#fff;color:#5b45a5;font-size:12px;font-weight:1000;white-space:nowrap}.quiz-timer.active{display:block}.quiz-timer.urgent{border-color:#f4a8b6;background:#ffe9ee;color:#a5233d}
   @media(max-width:600px){.old-test-maker{padding:14px;border-radius:19px}.old-test-maker::after{right:10%;top:12px;font-size:13px}.old-test-maker-head{grid-template-columns:46px minmax(0,1fr);margin-bottom:13px}.old-test-maker-icon{width:46px;height:46px;border-radius:15px;font-size:25px}.old-test-maker h3{font-size:18px}.old-test-goal{grid-column:1/-1;justify-self:start;margin-left:58px;padding:5px 8px;transform:none}.old-test-goal>span{width:25px;height:25px;font-size:14px}.old-test-goal strong{font-size:13px}.old-test-count-row{grid-template-columns:1fr;padding:8px}.old-test-count-hint{display:none}.old-test-schedule{grid-template-columns:1fr;gap:14px}.old-test-schedule::after{content:"↓";top:50%;width:28px;height:28px;font-size:13px}.old-test-time-card{padding:11px}.old-test-rule{display:grid;grid-template-columns:1fr 1fr}.quiz-top{flex-wrap:wrap}.quiz-timer.active{order:-1;width:100%;text-align:center}}
   @media(max-width:370px){.old-test-time-inputs{grid-template-columns:1fr}.old-test-rule{grid-template-columns:1fr}}
@@ -2217,6 +2224,17 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
             <button class="btn green create-review-test-btn" id="createEnglishReviewTestBtn" type="button" style="width:100%">🇬🇧 Tạo thử thách Anh–Anh</button>
             <div class="old-test-message" id="englishReviewTestMessage" role="status" aria-live="polite"></div>
           </section>
+          <section class="old-test-maker catchup-maker" aria-labelledby="catchupLessonTitle">
+            <div class="old-test-maker-head"><div class="old-test-maker-icon">🔁</div><div><span class="workflow-part-label"><b>1C</b> Giao lại</span><h3 id="catchupLessonTitle">Bài học bù – Từ chưa hoàn thành</h3><p>Tự lấy các từ Lâm Hà còn thiếu, ưu tiên từ sai nhiều và từ thuộc bài đã hết hạn.</p></div><div class="old-test-goal"><span>🌱</span><div><strong>HỌC BÙ</strong><small>THEO ĐỢT</small></div></div></div>
+            <div class="old-test-count-row"><div><label for="catchupWordCount">Số từ trong đợt này</label><div class="old-test-count-wrap"><input class="input" id="catchupWordCount" type="number" min="1" step="1" value="20"></div></div><span class="old-test-count-hint" id="catchupPoolHint">Đang tính kho từ…</span></div>
+            <div class="catchup-schedule">
+              <div class="catchup-date-card"><label for="catchupStartDate">🚀 Ngày bắt đầu</label><input class="input" id="catchupStartDate" type="date"></div>
+              <div class="catchup-date-card"><label for="catchupEndDate">🏁 Ngày kết thúc</label><input class="input" id="catchupEndDate" type="date"></div>
+            </div>
+            <div class="catchup-priority-note"><span>✨</span><div>Mỗi từ chỉ xuất hiện một lần trong đợt. Các từ đang nằm trong một bài học bù chưa kết thúc sẽ không bị giao trùng.</div></div>
+            <button class="btn green create-review-test-btn" id="createCatchupLessonBtn" type="button" style="width:100%">🔁 Giao bài học bù cho Lâm Hà</button>
+            <div class="old-test-message" id="catchupLessonMessage" role="status" aria-live="polite"></div>
+          </section>
           <section class="new-lesson-maker" aria-labelledby="newLessonTitle">
           <div class="new-lesson-head"><div class="new-lesson-icon">📚</div><div><span class="workflow-part-label"><b>2</b> Phần 2</span><h3 id="newLessonTitle">Tạo bài học mới</h3><p>Nhập bộ từ mới, bổ sung dữ liệu tự động và giao nhiệm vụ cho Lâm Hà.</p></div><div class="new-lesson-badge"><span>✨</span> BỘ TỪ MỚI</div></div>
           <div class="import-main-fields">
@@ -2758,6 +2776,29 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
     db.lessons.filter(l=>!l.reviewTest).forEach(l=>(l.words||[]).forEach(w=>{if(wordComplete(l,w)){const key=String(w.word||'').trim().toLowerCase();if(key&&!unique.has(key))unique.set(key,w);}}));
     return [...unique.values()];
   }
+  function completedCatchupWordKeys(){const keys=new Set();db.lessons.filter(l=>l.catchupLesson).forEach(l=>(l.words||[]).forEach(w=>{const key=reviewWordKey(w);if(key&&wordComplete(l,w))keys.add(key);}));return keys;}
+  function catchupWordPool(){
+    const resolved=completedCatchupWordKeys(),alreadyAssigned=new Set(),unique=new Map();
+    db.lessons.filter(l=>l.catchupLesson).forEach(l=>(l.words||[]).forEach(w=>{const key=reviewWordKey(w);if(key&&!wordComplete(l,w)&&!isExpired(l))alreadyAssigned.add(key);}));
+    db.lessons.filter(l=>!l.reviewTest&&!l.catchupLesson&&isAvailable(l)).forEach(l=>(l.words||[]).forEach((w,index)=>{
+      const key=reviewWordKey(w);if(!key||wordComplete(l,w)||resolved.has(key)||alreadyAssigned.has(key))return;
+      const row={lesson:l,word:w,index,mistakes:mistakeCountFor(l.id,w.id),expired:isExpired(l)};const old=unique.get(key);
+      if(!old||row.mistakes>old.mistakes||(row.mistakes===old.mistakes&&row.expired&&!old.expired))unique.set(key,row);
+    }));
+    return [...unique.values()].sort((a,b)=>b.mistakes-a.mistakes||Number(b.expired)-Number(a.expired)||lessonDate(a.lesson).localeCompare(lessonDate(b.lesson))||a.index-b.index);
+  }
+  function setCatchupDefaultDates(){const start=localDateKey(),end=addDaysKey(start,7);$('catchupStartDate').min=start;$('catchupStartDate').value=start;$('catchupEndDate').min=start;$('catchupEndDate').value=end;}
+  function createCatchupLesson(){
+    const message=$('catchupLessonMessage'),pool=catchupWordPool(),count=Math.floor(Number($('catchupWordCount').value)),start=$('catchupStartDate').value,end=$('catchupEndDate').value;
+    if(!Number.isFinite(count)||count<1){message.textContent='Vui lòng nhập số lượng từ muốn giao lại.';$('catchupWordCount').focus();return;}
+    if(!pool.length){message.textContent='Hiện không còn từ nào đủ điều kiện để giao lại.';return;}
+    if(count>pool.length){message.textContent=`Hiện có ${pool.length} từ chưa hoàn thành và chưa nằm trong đợt học bù khác; hãy nhập tối đa ${pool.length}.`;$('catchupWordCount').focus();return;}
+    if(!start){message.textContent='Vui lòng chọn ngày bắt đầu.';$('catchupStartDate').focus();return;}
+    if(!end||end<start){message.textContent='Ngày kết thúc phải bằng hoặc sau ngày bắt đầu.';$('catchupEndDate').focus();return;}
+    const id=uid('catchup'),selected=pool.slice(0,count),words=selected.map((row,i)=>({...row.word,id:`${id}-w${i+1}`,catchupSourceLessonId:row.lesson.id,catchupSourceWordId:row.word.id})),createdAt=new Date().toISOString();
+    db.lessons.unshift({id,title:`Bài học bù · ${count} từ cần hoàn thành`,description:`Ôn và hoàn thành ${count} từ còn thiếu, ưu tiên từ sai nhiều và từ thuộc bài đã hết hạn.`,icon:'🔁',required:true,catchupLesson:true,createdAt,assignedDate:start,endDate:end,words});
+    save();renderTeacher();setCatchupDefaultDates();message.textContent=`Đã giao ${count} từ cần hoàn thành: ${formatDate(start)} → ${formatDate(end)}.`;toast('🔁 Đã tạo bài học bù cho Lâm Hà.');
+  }
   function localTimeKey(d=new Date()){return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
   const REVIEW_TEST_CONTROLS={
     vietnamese:{mode:'vi-en',count:'testWordCount',startDate:'testStartDate',startTime:'testStartTime',endDate:'testDeadlineDate',endTime:'testDeadlineTime',message:'reviewTestMessage'},
@@ -2934,6 +2975,7 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
   function renderTeacher(){
     const completed=db.lessons.filter(isComplete).length,mastered=totalMastered(),upcoming=db.lessons.filter(l=>!isAvailable(l)).length,failed=db.lessons.filter(isFailed).length,ordered=teacherLessonOrder(),cashTotal=cashRewardTotal(),cashCount=approvedCashRewards().length,penaltyTotal=cashPenaltyTotal(),penaltyCount=penalizedLessons().length,cashBalance=cashBalanceTotal(),receivedTotal=cashPayoutTotal(),remainingTotal=cashPayoutRemaining();
     const testPoolSize=completedWordPool().length,testCountInput=$('testWordCount'),testMessage=$('reviewTestMessage');if(testCountInput)testCountInput.max=String(Math.max(1,testPoolSize));if(testMessage&&!testMessage.textContent)testMessage.textContent=testPoolSize?`Có ${testPoolSize} từ đã hoàn thành sẵn sàng để kiểm tra.`:'Chưa có từ nào đã hoàn thành để tạo bài kiểm tra.';
+    const catchupPoolSize=catchupWordPool().length,catchupCount=$('catchupWordCount'),catchupHint=$('catchupPoolHint'),catchupMessage=$('catchupLessonMessage');if(catchupCount)catchupCount.max=String(Math.max(1,catchupPoolSize));if(catchupHint)catchupHint.textContent=catchupPoolSize?`${catchupPoolSize} từ sẵn sàng`:'Đã hoàn thành hết ✓';if(catchupMessage&&!catchupMessage.textContent)catchupMessage.textContent=catchupPoolSize?`Có ${catchupPoolSize} từ có thể chia thành các đợt giao lại.`:'Không còn từ nào cần giao lại.';
     $('teacherStats').innerHTML=[['📚',db.lessons.length,'Bộ từ đã lên lịch'],['📅',upcoming,'Bài sắp mở'],['✅',completed,'Bài hoàn thành'],['⏰',failed,'Không hoàn thành']].map(x=>`<div class="stat"><span class="stat-icon">${x[0]}</span><div class="stat-label">${x[2]}</div><div class="stat-value">${x[1]}</div></div>`).join('');
     const list=$('teacherLessonList');
     const activeLessons=ordered.filter(l=>isAvailable(l)&&!isExpired(l)),upcomingLessons=ordered.filter(l=>!isAvailable(l)),endedLessons=ordered.filter(isExpired);
@@ -3294,12 +3336,12 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
     return lessonDate(b).localeCompare(lessonDate(a))||lessonEndDate(b).localeCompare(lessonEndDate(a))||String(b.id).localeCompare(String(a.id));
   }
   function activeWrongWords(activeLessons){
-    const p=studentProgress(),byWord=new Map();
+    const p=studentProgress(),byWord=new Map(),resolvedCatchup=completedCatchupWordKeys();
     [...activeLessons].sort(compareReviewLessons).forEach(l=>{
       const map=(p.mistakes&&p.mistakes[l.id])||{};
       l.words.forEach((w,index)=>{
         const count=Number(map[w.id])||0,key=reviewWordKey(w);
-        if(!count||!key)return;
+        if(!count||!key||(!l.catchupLesson&&resolvedCatchup.has(key)))return;
         const existing=byWord.get(key);
         if(existing)existing.count+=count;
         else byWord.set(key,{lesson:l,word:w,index,count});
@@ -3314,11 +3356,11 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
 
   function unfinishedReviewWords(wrongRows=[]){
     const excludedWords=new Set(wrongRows.map(r=>reviewWordKey(r.word)).filter(Boolean));
-    const seenWords=new Set(),rows=[];
+    const seenWords=new Set(),rows=[],resolvedCatchup=completedCatchupWordKeys();
     const lessons=studentLessonOrder().filter(isAvailable).sort(compareReviewLessons);
     lessons.forEach(l=>l.words.forEach((w,index)=>{
       const key=reviewWordKey(w);
-      if(!key||seenWords.has(key))return;
+      if(!key||seenWords.has(key)||(!l.catchupLesson&&resolvedCatchup.has(key)))return;
       seenWords.add(key);
       if(!wordComplete(l,w)&&!excludedWords.has(key))rows.push({lesson:l,word:w,index,count:mistakeCountFor(l.id,w.id),reviewType:'unfinished'});
     }));
@@ -3546,7 +3588,7 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
 
   $('loginForm').addEventListener('submit',async e=>{e.preventDefault();const submit=e.currentTarget.querySelector('button[type="submit"]');$('loginError').textContent='';if(submit){submit.disabled=true;submit.textContent='Đang đăng nhập…';}try{const result=await login($('username').value.trim(),$('password').value);if(!result||!result.ok)$('loginError').textContent=(result&&result.message)||'Tên đăng nhập hoặc mật khẩu chưa đúng.';}finally{if(submit){submit.disabled=false;submit.textContent='Vào lớp học →';}}});
   document.querySelectorAll('.demo-account').forEach(x=>x.onclick=()=>{const username=x.dataset.user;$('username').value=username;$('password').value='';$('loginError').textContent='';$('password').focus();});
-  $('soundToggle').onclick=()=>{const willEnable=!soundEnabled;if(willEnable){soundEnabled=true;localStorage.setItem('b2_wordquest_sound','on');sfx('open');}else{soundEnabled=false;localStorage.setItem('b2_wordquest_sound','off');}renderTopbar();toast(soundEnabled?'🔊 Đã bật hiệu ứng âm thanh.':'🔇 Đã tắt hiệu ứng âm thanh.');};$('musicToggle').onclick=()=>{musicEnabled=!musicEnabled;localStorage.setItem('b2_wordquest_music',musicEnabled?'on':'off');if(musicEnabled){unlockAudio();startBackgroundMusic();sfx('open');toast('🎵 Đã bật nhạc nền nhẹ.');}else{stopBackgroundMusic();sfx('tap');toast('🎵 Đã tắt nhạc nền.');}renderTopbar();};$('changePasswordBtn').onclick=openPasswordModal;$('closePasswordModalBtn').onclick=closePasswordModal;$('cancelPasswordBtn').onclick=closePasswordModal;$('changePasswordForm').addEventListener('submit',changePassword);$('passwordModal').addEventListener('click',e=>{if(e.target===$('passwordModal'))closePasswordModal();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('passwordModal').classList.contains('hidden'))closePasswordModal();});$('logoutBtn').onclick=logout;$('resetStudentBtn').onclick=resetStudent;$('createReviewTestBtn').onclick=createReviewTest;$('chooseFileBtn').onclick=()=>$('fileImport').click();$('previewImportBtn').onclick=()=>previewImport();$('autoCompleteBtn').onclick=()=>previewImport({forceEnrich:true});$('createLessonBtn').onclick=()=>createLesson();
+  $('soundToggle').onclick=()=>{const willEnable=!soundEnabled;if(willEnable){soundEnabled=true;localStorage.setItem('b2_wordquest_sound','on');sfx('open');}else{soundEnabled=false;localStorage.setItem('b2_wordquest_sound','off');}renderTopbar();toast(soundEnabled?'🔊 Đã bật hiệu ứng âm thanh.':'🔇 Đã tắt hiệu ứng âm thanh.');};$('musicToggle').onclick=()=>{musicEnabled=!musicEnabled;localStorage.setItem('b2_wordquest_music',musicEnabled?'on':'off');if(musicEnabled){unlockAudio();startBackgroundMusic();sfx('open');toast('🎵 Đã bật nhạc nền nhẹ.');}else{stopBackgroundMusic();sfx('tap');toast('🎵 Đã tắt nhạc nền.');}renderTopbar();};$('changePasswordBtn').onclick=openPasswordModal;$('closePasswordModalBtn').onclick=closePasswordModal;$('cancelPasswordBtn').onclick=closePasswordModal;$('changePasswordForm').addEventListener('submit',changePassword);$('passwordModal').addEventListener('click',e=>{if(e.target===$('passwordModal'))closePasswordModal();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('passwordModal').classList.contains('hidden'))closePasswordModal();});$('logoutBtn').onclick=logout;$('resetStudentBtn').onclick=resetStudent;$('createReviewTestBtn').onclick=createReviewTest;$('createCatchupLessonBtn').onclick=createCatchupLesson;$('chooseFileBtn').onclick=()=>$('fileImport').click();$('previewImportBtn').onclick=()=>previewImport();$('autoCompleteBtn').onclick=()=>previewImport({forceEnrich:true});$('createLessonBtn').onclick=()=>createLesson();
   $('createEnglishReviewTestBtn').onclick=createEnglishReviewTest;
   const musicVolumeBtn=$('musicVolumeBtn'),musicVolumePopover=$('musicVolumePopover'),musicVolumeSlider=$('musicVolumeSlider');
   function closeMusicVolumePopover(){if(!musicVolumePopover)return;musicVolumePopover.classList.add('hidden');if(musicVolumeBtn)musicVolumeBtn.setAttribute('aria-expanded','false');}
@@ -3565,7 +3607,7 @@ body.student-home-mode .top-actions #changePasswordBtn .password-short{display:i
   $('reviewMode').onclick=()=>{sfx('tap');startReview();};$('quizMode').onclick=()=>{sfx('tap');startQuiz();};$('flashcard').onclick=e=>{if(e.target.closest('a,button,details'))return;sfx('flip');$('flashcard').classList.toggle('flipped');};$('flashSpeak').onclick=e=>{e.stopPropagation();speak(currentLesson.words[flashIndex].word);};$('flashRefreshData').onclick=refreshCurrentFlashData;$('flashPrev').onclick=prevFlash;$('flashNext').onclick=nextFlash;$('goQuizBtn').onclick=startQuiz;$('quizSpeak').onclick=()=>speak(quizQuestion.word);$('typingSpeak').onclick=()=>speak(quizQuestion.word);$('typingForm').addEventListener('submit',answerTyping);$('reviewAgainBtn').onclick=()=>{startReview();};
 
   document.addEventListener('click',e=>{const el=e.target.closest('button,a,summary,[data-open-teacher-sheet]');if(!el)return;if(el.id==='soundToggle'||el.id==='musicToggle'||el.id==='musicVolumeBtn'||el.closest('#musicVolumePopover')||el.id==='reviewMode'||el.id==='quizMode'||el.classList.contains('option')||el.closest('.options')||el.closest('#typingForm'))return;if(el.matches('[data-open-teacher-sheet],.teacher-sheet-launch'))sfx('open');else if(el.matches('summary'))sfx('flip');else sfx('tap');},true);
-  $('assignmentDate').value=localDateKey();$('assignmentEndDate').min=localDateKey();$('assignmentEndDate').value=addDaysKey(localDateKey(),7);$('assignmentDate').addEventListener('change',()=>{const start=$('assignmentDate').value||localDateKey(),end=$('assignmentEndDate');end.min=start;if(!end.value||end.value<start)end.value=addDaysKey(start,7);});setReviewTestDefaultDeadline(REVIEW_TEST_CONTROLS.vietnamese);setReviewTestDefaultDeadline(REVIEW_TEST_CONTROLS.english);$('testStartDate').addEventListener('change',()=>{const start=$('testStartDate').value||localDateKey(),end=$('testDeadlineDate');end.min=start;if(!end.value||end.value<start)end.value=start;});$('englishTestStartDate').addEventListener('change',()=>{const start=$('englishTestStartDate').value||localDateKey(),end=$('englishTestDeadlineDate');end.min=start;if(!end.value||end.value<start)end.value=start;});
+  $('assignmentDate').value=localDateKey();$('assignmentEndDate').min=localDateKey();$('assignmentEndDate').value=addDaysKey(localDateKey(),7);$('assignmentDate').addEventListener('change',()=>{const start=$('assignmentDate').value||localDateKey(),end=$('assignmentEndDate');end.min=start;if(!end.value||end.value<start)end.value=addDaysKey(start,7);});setReviewTestDefaultDeadline(REVIEW_TEST_CONTROLS.vietnamese);setReviewTestDefaultDeadline(REVIEW_TEST_CONTROLS.english);setCatchupDefaultDates();$('testStartDate').addEventListener('change',()=>{const start=$('testStartDate').value||localDateKey(),end=$('testDeadlineDate');end.min=start;if(!end.value||end.value<start)end.value=start;});$('englishTestStartDate').addEventListener('change',()=>{const start=$('englishTestStartDate').value||localDateKey(),end=$('englishTestDeadlineDate');end.min=start;if(!end.value||end.value<start)end.value=start;});$('catchupStartDate').addEventListener('change',()=>{const start=$('catchupStartDate').value||localDateKey(),end=$('catchupEndDate');end.min=start;if(!end.value||end.value<start)end.value=addDaysKey(start,7);});
   db.session=null;localSaveOnly();renderTopbar();show('loginScreen');
   window.B2AppFirebase={
     getDB:()=>JSON.parse(JSON.stringify(db)),
